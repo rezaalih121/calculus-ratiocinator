@@ -1,4 +1,4 @@
-import { add, multiply, divide, subtract, incrementOf10, addThenMultiply, calculator, modulo, isOdd, isEven, square, cube, composeNewMathOperation } from '../src/functional-core/functions';
+import { add, multiply, divide, subtract, incrementOf10, addThenMultiply, calculator, modulo, isOdd, isEven, square, cube, composeNewMathOperation,isGeometricShape, calculateArea, calculateExtendedArea, Rectangle, Circle, TriangleIsocele, TriangleRectangle, TriangleEquilateral } from '../src/functional-core/functions';
 import { fold } from 'fp-ts/Either';
 
 console.log("============ question 1 =========");
@@ -62,3 +62,25 @@ const handleDivideResult = fold(
 
 console.log(handleDivideResult(divideResult1)); // Result: 2
 console.log(handleDivideResult(divideResult2)); // Error: Division by zero is not allowed
+
+console.log("============ question 9 =========");
+// Test isGeometricShape function
+const rectangle: Rectangle = { kind: 'rectangle', width: 10, height: 5 };
+const circle: Circle = { kind: 'circle', radius: 7 };
+console.log(isGeometricShape(rectangle)); // true
+console.log(isGeometricShape(circle)); // true
+const invalidShape = { kind: 'triangle', base: 5, height: 10 };
+console.log(isGeometricShape(invalidShape)); // false
+
+console.log("============ question 10 =========");
+// Test calculateArea function
+console.log(calculateArea(rectangle)); // 50
+console.log(calculateArea(circle)); // approximately 153.94
+
+// Test calculateExtendedArea function
+const triangleIsocele: TriangleIsocele = { kind: 'triangle', base: 10, height: 5 };
+const triangleRectangle: TriangleRectangle = { kind: 'triangle', base: 10, height: 5 };
+const triangleEquilateral: TriangleEquilateral = { kind: 'triangle', side: 10 };
+console.log(calculateExtendedArea(triangleIsocele)); // 25
+console.log(calculateExtendedArea(triangleRectangle)); // 25
+console.log(calculateExtendedArea(triangleEquilateral)); // approximately 43.30

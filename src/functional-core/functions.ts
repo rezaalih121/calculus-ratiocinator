@@ -60,5 +60,82 @@ const square = (x: number): number => multiply(x)(x);
 // Cube function
 const cube = (x: number): number => multiply(multiply(x)(x))(x);
 
-// Export functions
-export { add, multiply, divide, subtract, incrementOf10, addThenMultiply, calculator, modulo, isOdd, isEven, square, cube, composeNewMathOperation, UnaryMathOperation, UnaryMathOperationsAggregator, TernaryMathOperationFn };
+// Define types for geometric shapes
+type Rectangle = {
+  kind: 'rectangle';
+  width: number;
+  height: number;
+};
+
+type Circle = {
+  kind: 'circle';
+  radius: number;
+};
+
+// Define a union type for geometric shapes
+type GeometricShape = Rectangle | Circle;
+
+// Type guard to check if an argument is a GeometricShape
+const isGeometricShape = (shape: any): shape is GeometricShape => {
+  return (
+    (shape.kind === 'rectangle' && typeof shape.width === 'number' && typeof shape.height === 'number') ||
+    (shape.kind === 'circle' && typeof shape.radius === 'number')
+  );
+};
+
+// Function to calculate the area of a geometric shape
+const calculateArea = (shape: GeometricShape): number => {
+  switch (shape.kind) {
+    case 'rectangle':
+      return shape.width * shape.height;
+    case 'circle':
+      return Math.PI * shape.radius * shape.radius;
+    default:
+      throw new Error('Unknown shape');
+  }
+};
+
+// Define types for triangles
+type Triangle = {
+  kind: 'triangle';
+};
+
+type TriangleIsocele = Triangle & {
+  base: number;
+  height: number;
+};
+
+type TriangleRectangle = Triangle & {
+  base: number;
+  height: number;
+};
+
+type TriangleEquilateral = Triangle & {
+  side: number;
+};
+
+// Extend the GeometricShape union type to include triangles
+type ExtendedGeometricShape = GeometricShape | TriangleIsocele | TriangleRectangle | TriangleEquilateral;
+
+// Adapt the calculateArea function to handle triangles
+const calculateExtendedArea = (shape: ExtendedGeometricShape): number => {
+  switch (shape.kind) {
+    case 'rectangle':
+      return shape.width * shape.height;
+    case 'circle':
+      return Math.PI * shape.radius * shape.radius;
+    case 'triangle':
+      if ('base' in shape && 'height' in shape) {
+        return (shape.base * shape.height) / 2;
+      } else if ('side' in shape) {
+        return (Math.sqrt(3) / 4) * shape.side * shape.side;
+      } else {
+        throw new Error('Unknown triangle type');
+      }
+    default:
+      throw new Error('Unknown shape');
+  }
+};
+
+// Export functions and types
+export { add, multiply, divide, subtract, incrementOf10, addThenMultiply, calculator, modulo, isOdd, isEven, square, cube, composeNewMathOperation, isGeometricShape, calculateArea, calculateExtendedArea, UnaryMathOperation, UnaryMathOperationsAggregator, TernaryMathOperationFn, GeometricShape, Rectangle, Circle, Triangle, TriangleIsocele, TriangleRectangle, TriangleEquilateral, ExtendedGeometricShape };

@@ -118,3 +118,43 @@ const handleDivideResult2 = fold(
 );
 assert.strictEqual(handleDivideResult2(divideResult2), 'Error: Division by zero is not allowed');
 console.log("Result: Passed");
+
+console.log("============ question 9 =========");
+console.log("Testing isGeometricShape function with a Rectangle, expected output: true");
+const rectangle: Rectangle = { kind: 'rectangle', width: 10, height: 5 };
+assert.strictEqual(isGeometricShape(rectangle), true);
+console.log("Result: Passed");
+
+console.log("Testing isGeometricShape function with a Circle, expected output: true");
+const circle: Circle = { kind: 'circle', radius: 7 };
+assert.strictEqual(isGeometricShape(circle), true);
+console.log("Result: Passed");
+
+console.log("Testing isGeometricShape function with an invalid shape, expected output: false");
+const invalidShape = { kind: 'triangle', base: 5, height: 10 };
+assert.strictEqual(isGeometricShape(invalidShape), false);
+console.log("Result: Passed");
+
+console.log("============ question 10 =========");
+console.log("Testing calculateArea function with a Rectangle, expected output: 50");
+assert.strictEqual(calculateArea(rectangle), 50);
+console.log("Result: Passed");
+
+console.log("Testing calculateArea function with a Circle, expected output: approximately 153.94");
+assert.strictEqual(calculateArea(circle), Math.PI * 7 * 7);
+console.log("Result: Passed");
+
+console.log("Testing calculateExtendedArea function with a TriangleIsocele, expected output: 25");
+const triangleIsocele: TriangleIsocele = { kind: 'triangle', base: 10, height: 5 };
+assert.strictEqual(calculateExtendedArea(triangleIsocele), 25);
+console.log("Result: Passed");
+
+console.log("Testing calculateExtendedArea function with a TriangleRectangle, expected output: 25");
+const triangleRectangle: TriangleRectangle = { kind: 'triangle', base: 10, height: 5 };
+assert.strictEqual(calculateExtendedArea(triangleRectangle), 25);
+console.log("Result: Passed");
+
+console.log("Testing calculateExtendedArea function with a TriangleEquilateral, expected output: approximately 43.30");
+const triangleEquilateral: TriangleEquilateral = { kind: 'triangle', side: 10 };
+assert.strictEqual(calculateExtendedArea(triangleEquilateral), (Math.sqrt(3) / 4) * 10 * 10);
+console.log("Result: Passed");
