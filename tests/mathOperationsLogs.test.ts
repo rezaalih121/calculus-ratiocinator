@@ -1,4 +1,4 @@
-import { add, multiply, divide, subtract, incrementOf10, addThenMultiply, calculator, modulo, isOdd, isEven, square, cube, composeNewMathOperation } from '../src/functional-core/BinaryMathOperation';
+import { add, multiply, divide, subtract, incrementOf10, addThenMultiply, calculator, modulo, isOdd, isEven, square, cube, composeNewMathOperation } from '../src/functional-core/functions';
 import { fold } from 'fp-ts/Either';
 
 console.log("============ question 1 =========");
